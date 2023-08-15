@@ -1,29 +1,20 @@
 import Link from 'next/link';
-import React from 'react';
 
-type Props = {
-  navbar: boolean;
-};
-const Logo = ({ navbar }: Props) => {
+const Logo = () => {
   return (
-    <div>
+    <div className="text-tertiary uppercase">
       <Link href="/">
-        <h1
-          className={`${
-            navbar &&
-            'text-pry scale-75 transition-all delay-150 duration-500 ease-in-out'
-          } text-3xl font-semibold tracking-wider`}
-        >
-          Pursuit{' '}
-          <span
-            className={`${
-              navbar &&
-              'text-slate-800 transition-all delay-150 duration-300 ease-in-out'
-            } text-pry`}
+        <div className="flex flex-col justify-center items-center w-full">
+          <h1
+            className="
+            text-gray-800 ease-i text-2xl md:text-3xl font-semibold tracking-wider leading-tight"
           >
+            Pursuit
+          </h1>
+          <span className="md:text-lg text-center font-medium tracking-[1em] font-serif text-gray-700 -mt-2">
             Hub
           </span>
-        </h1>
+        </div>
       </Link>
     </div>
   );

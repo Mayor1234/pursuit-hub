@@ -21,7 +21,6 @@ export default defineConfig({
   theme: myTheme,
   studio: {
     components: {
-      // logo: StudioLogo,
       navbar: StudioNavbar,
     },
   },

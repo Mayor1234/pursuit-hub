@@ -2,37 +2,35 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { urlForImage } from '@/sanity/lib/image';
 
-// import getYouTubeId from 'get-youtube-id';
-// import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-// import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+import getYouTubeId from 'get-youtube-id';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 export const PortableTextComponents = {
   types: {
     image: ({ value }: any) => {
       return (
-        <div className="text-gray-600 w-full m-10 mx-auto">
+        <div className="text-gray-600 m-10 mx-auto">
           <Image
             className="object-contain w-full rounded"
             src={urlForImage(value).url()}
             alt="blog post Image"
             width={600}
             height={200}
-
-            // sizes="(max-width: 768px)"
           />
         </div>
       );
     },
-    // youtube: (node: any) => {
-    //   const url = node.value.url;
-    //   const id = getYouTubeId(url) as string;
+    youtube: (node: any) => {
+      const url = node.value.url;
+      const id = getYouTubeId(url) as string;
 
-    //   return (
-    //     <div className="py-12 rounded">
-    //       <LiteYouTubeEmbed id={id} title="Youtube video" />
-    //     </div>
-    //   );
-    // },
+      return (
+        <div className="py-12 rounded">
+          <LiteYouTubeEmbed id={id} title="Youtube video" />
+        </div>
+      );
+    },
   },
 
   list: {
@@ -45,7 +43,7 @@ export const PortableTextComponents = {
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="mt-lg list-decimal">{children}</ol>
+      <ol className="mt-lg list-decimal ml-5">{children}</ol>
     ),
   },
   block: {
@@ -70,15 +68,22 @@ export const PortableTextComponents = {
     ),
   },
   marks: {
-    links: ({ children, value }: any) => {
-      const rel = !value.href.startsWith('/')
-        ? 'noreferer noopener'
-        : undefined;
-      return (
+    internalLink: ({ value, children }: any) => {
+      const { slug = {} } = value;
+      const href = `/${slug.current}`;
+      return <Link href={href}>{children}</Link>;
+    },
+    link: ({ value, children }: any) => {
+      // Read https://css-tricks.com/use-target_blank/
+      const { blank, href } = value;
+      return blank ? (
+        <Link href={href} target="_blank" rel="noopener">
+          {children}
+        </Link>
+      ) : (
         <Link
-          href={value.href}
-          rel={rel}
-          className="text-[#1890ff] hover:underline"
+          href={href}
+          className="text-blue-500 underline hover:text-purple-500"
         >
           {children}
         </Link>

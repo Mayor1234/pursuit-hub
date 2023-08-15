@@ -10,7 +10,7 @@ const MenuItems = () => {
 
   return (
     <div>
-      <ul className="hidden md:flex md:hfull justify-center items-center gap-10">
+      <ul className="hidden h-16 md:flex justify-center items-center gap-10">
         <Menu />
       </ul>
       <div className="h-full flex items-center justify-center flex-col  md:hidden">
@@ -21,8 +21,11 @@ const MenuItems = () => {
           {isOpen ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
         </div>
         {isOpen && (
-          <div className="h-screen w-screen bg-[#d6dbdc]  absolute top-20 right-0 left-0 z-40 gap-8 uppercase text-sm text-gray-800 font-medium shadow-md">
-            <ul className="flex flex-col h-[80%] gap-10 py-20 px-5 md:hidden ">
+          <div className="h-screen w-screen bg-[#d6dbdc] absolute top-16 right-0 left-0 z-40 gap-8 uppercase text-sm text-gray-800 font-medium shadow-md">
+            <ul
+              className="flex flex-col h-[80%] gap-10 py-20 px-5 md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <Menu />
             </ul>
           </div>

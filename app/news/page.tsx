@@ -1,12 +1,15 @@
 import { groq } from 'next-sanity';
 import { client } from '@/sanity/lib/client';
-import BrainTeaserPost from '../components/brain-teaser-component/BrainTeaserPost';
+
 import { Suspense } from 'react';
 import Loading from '../components/loading/Loading';
 
-import BrainTrending from '../components/brain-teaser-component/BrainTrending';
+import TrendingCard from '../components/main/TrendingCard';
 
-const query = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
+import NewsPost from '../components/news-component/NewsPost';
+import NewsTrending from '../components/news-component/NewsTrending';
+
+const query = groq`*[_type == 'category' && title == 'news'][0]{
     ...,
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
@@ -15,8 +18,8 @@ const query = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
   }
   `;
 
-const queryAll = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
-
+const queryAll = groq`*[_type == 'category' && title == 'news'][0]{
+    
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
     author->{name},
@@ -30,13 +33,13 @@ const page = async () => {
   const posts = await client.fetch(query);
   const trending = await client.fetch(queryAll);
 
-  const brainTrend = trending.posts;
+  const news = trending.posts;
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div>
       <Suspense fallback={<Loading />}>
-        <BrainTeaserPost posts={posts} />
-        <BrainTrending trending={brainTrend} />
+        <NewsPost posts={posts} />
+        <NewsTrending trending={news} />
       </Suspense>
     </div>
   );

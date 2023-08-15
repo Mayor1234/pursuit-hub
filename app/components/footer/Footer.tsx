@@ -2,6 +2,7 @@ import Link from 'next/link';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import Logo from '../header/Logo';
 
 const data = [
   {
@@ -27,17 +28,9 @@ const year = new Date().getFullYear();
 const Footer = () => {
   return (
     <footer className="max-w-7xl mx-auto my-10 md:my-20">
-      <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between">
         <div>
-          <div className="font-medium pb-4 md:pb-0">
-            <Link href="/">
-              <h1 className="text-3xl">
-                Pursuit{' '}
-                <span className="text-pry font-bold tracking-wider">Hub</span>
-              </h1>
-            </Link>
-          </div>
-          <div></div>
+          <Logo />
         </div>
         <div className="flex flex-col justify-between items-center text-gray-500">
           <ul className="flex flex-wrap justify-center items-center  gap-4 pb-4">

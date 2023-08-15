@@ -1,12 +1,13 @@
 import Link from 'next/link';
-import { ArrowLeftIcon } from '@heroicons/react/24/solid';
+
+import KeyboardReturnOutlinedIcon from '@mui/icons-material/KeyboardReturnOutlined';
 
 function StudioNavbar(props: any) {
   return (
     <div className="flex flex-col">
       <Link href="/">
         <div className=" flex items-center text-[#fff] p-5 hover:text-[#1890ff] ">
-          <ArrowLeftIcon className="h-4 mr-2 text-[#fff]" />
+          <KeyboardReturnOutlinedIcon />
           Back To Website
         </div>
       </Link>

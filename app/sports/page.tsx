@@ -1,12 +1,12 @@
 import { groq } from 'next-sanity';
 import { client } from '@/sanity/lib/client';
-import BrainTeaserPost from '../components/brain-teaser-component/BrainTeaserPost';
 import { Suspense } from 'react';
 import Loading from '../components/loading/Loading';
 
-import BrainTrending from '../components/brain-teaser-component/BrainTrending';
+import SportComponent from '../components/sport-component/SportComponent';
+import SportTrending from '../components/sport-component/SportTrending';
 
-const query = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
+const query = groq`*[_type == 'category' && title == 'sports'][0]{
     ...,
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
@@ -15,7 +15,7 @@ const query = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
   }
   `;
 
-const queryAll = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
+const queryAll = groq`*[_type == 'category' && title == 'sports'][0]{
 
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
@@ -30,13 +30,13 @@ const page = async () => {
   const posts = await client.fetch(query);
   const trending = await client.fetch(queryAll);
 
-  const brainTrend = trending.posts;
+  const sportTrend = trending.posts;
 
   return (
     <div className="max-w-5xl mx-auto">
       <Suspense fallback={<Loading />}>
-        <BrainTeaserPost posts={posts} />
-        <BrainTrending trending={brainTrend} />
+        <SportComponent posts={posts} />
+        <SportTrending trending={sportTrend} />
       </Suspense>
     </div>
   );

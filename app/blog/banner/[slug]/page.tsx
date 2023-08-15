@@ -6,7 +6,6 @@ import { PortableText } from '@portabletext/react';
 import { groq } from 'next-sanity';
 import Image from 'next/image';
 import React from 'react';
-import { Suspense } from 'react';
 
 type Props = {
   params: {
@@ -15,15 +14,14 @@ type Props = {
 };
 
 const page = async ({ params: { slug } }: Props) => {
-  const query2 = groq`
+  const query = groq`
     *[_type=='post' && slug.current == $slug][0]{
         ...,
         author->{image, name},
-        "comment": *[_type=='comment' && post._ref==^._id && approved == true],
         categories[]->
     }
     `;
-  const bannerPost: Post = await client.fetch(query2, { slug });
+  const bannerPost: Post = await client.fetch(query, { slug });
   return (
     <section className="max-w-5xl mx-auto my-10">
       <article className="max-w-3xl px-5 md:px-0">

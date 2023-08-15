@@ -12,7 +12,7 @@ export const menuItems = [
     title: 'sports',
   },
   {
-    url: 'shop',
-    title: 'Shop',
+    url: 'shopping',
+    title: 'Shopping',
   },
 ];

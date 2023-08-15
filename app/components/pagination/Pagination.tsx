@@ -1,8 +1,8 @@
 import usePagination from '../hooks/usePagination';
 
-import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 
-import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 export type PaginationProps = {
   totalPosts: number;
   paginate: (pageNumber: number) => void;
@@ -26,9 +26,9 @@ const Pagination = ({
 
   return (
     <div>
-      <ul className="flex gap-4 items-center justify-center my-8">
+      <ul className="flex gap-4 items-center justify-center my-8 ">
         <li onClick={() => prevPage()}>
-          <KeyboardDoubleArrowLeftOutlinedIcon className="text-pry  hover:text-sec transition-all delay-75 duration-300 ease-in-out cursor-pointer" />
+          <KeyboardArrowLeftOutlinedIcon className="text-pry  hover:text-sec transition-all delay-75 duration-300 ease-in-out cursor-pointer" />
         </li>
         {pages.map((page) => (
           <li
@@ -41,7 +41,7 @@ const Pagination = ({
           </li>
         ))}
         <li onClick={() => nextPage()} className="font-light">
-          <KeyboardDoubleArrowRightOutlinedIcon className="text-pry  hover:text-sec transition-all delay-100 duration-300 ease-in-out cursor-pointer" />
+          <KeyboardArrowRightOutlinedIcon className="text-pry  hover:text-sec transition-all delay-100 duration-300 ease-in-out cursor-pointer" />
         </li>
       </ul>
     </div>

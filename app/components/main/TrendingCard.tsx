@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Post } from '@/typings';
 import { urlForImage } from '@/sanity/lib/image';
 import Image from 'next/image';
-import Link from 'next/link';
 import Pagination from '../pagination/Pagination';
+import ClientRoute from '../ClientRoute';
+import Link from 'next/link';
+import Loading from '../loading/Loading';
 
 type Props = {
   trending: Post[];
@@ -38,46 +40,50 @@ const TrendingCard = ({ trending }: Props) => {
 
   return (
     <div>
-      <div className="flex flex-col gap-5 pb-8 px-5 md:px-0">
-        {currentPosts?.map((post, index) => (
-          <div key={index} className="flex items-center gap-2">
-            <div className="relative w-[116px] h-[85px] md:w-[240px] md:h-[135px]">
-              <Image
-                src={urlForImage(post?.mainImage).url()}
-                className="object-center object-fill rounded-sm w-full"
-                alt={post.title}
-                fill
-              />
-            </div>
-            <div className="p-4 flex-1 self-center">
-              <div className="flex-none">
-                {post.categories.map((item, index) => (
-                  <div key={index}>
-                    <span className="uppercase mb-2 text-pry inline-block text-xs font-medium">
-                      {item.title}
-                    </span>
-                  </div>
-                ))}
+      <Suspense fallback={<Loading />}>
+        <div className="flex flex-col gap-5 pb-8 px-5 md:px-0">
+          {currentPosts?.map((post, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <ClientRoute route={`blog/post/${post.slug.current}`}>
+                <div className="relative w-[116px] h-[85px] md:w-[240px] md:h-[135px]">
+                  <Image
+                    src={urlForImage(post?.mainImage).url()}
+                    className="object-center object-fill rounded-sm w-full"
+                    alt={post.title}
+                    fill
+                  />
+                </div>
+              </ClientRoute>
+              <div className="p-4 flex-1 self-center">
+                <div className="flex-none">
+                  {post?.categories?.map((category, index) => (
+                    <Link href={`/${category.title}`} key={index}>
+                      <span className="uppercase mb-2 text-pry inline-block text-xs font-medium transition-all delay-150 duration-300 ease-in-out hover:text-tertiary">
+                        {category.title}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+                <Link href={`blog/post/${post.slug.current}`}>
+                  <p className="text-lg font-medium md:tracking-wide text-gray-700 line-clamp-1 md:line-clamp-2 md:leading-tight transition-all delay-150 duration-300 ease-in-out hover:text-pry">
+                    {post?.title}
+                  </p>
+                </Link>
+                <div className="flex text-sm font-light text-gray-600 capitalize pt-2">
+                  <p className="pr-2">by {post.author.name}</p>
+                  <span className='before:content-["\a·\a"]'>
+                    {new Date(post?.publishedAt).toLocaleDateString('en-US', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </span>
+                </div>
               </div>
-              <Link href={`blog/post/${post.slug.current}`}>
-                <p className="text-lg font-medium md:tracking-wide text-gray-700 line-clamp-1 md:line-clamp-2 md:leading-tight transition-all delay-150 duration-300 ease-in-out hover:text-pry">
-                  {post?.title}
-                </p>
-              </Link>
-              <div className="flex text-sm font-light text-gray-600 capitalize pt-2">
-                <p className="pr-2">by {post.author.name}</p>
-                <span className='before:content-["\a·\a"]'>
-                  {new Date(post?.publishedAt).toLocaleDateString('en-US', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </span>
-              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Suspense>
       <Pagination
         totalPosts={trending.length}
         paginate={paginate}

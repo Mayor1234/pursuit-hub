@@ -3,18 +3,18 @@ import { Post } from '@/typings';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const BrainTeaserPost = ({ posts }: any) => {
-  const brainPosts: Post[] = posts.posts;
+const SportComponent = ({ posts }: any) => {
+  const sportPosts: Post[] = posts.posts;
 
   return (
     <section className="max-w-5xl mx-autos my-20">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {brainPosts?.map((post, index) => (
+        {sportPosts?.map((post, index) => (
           <div key={index}>
             <Link href={`blog/post/${post.slug.current}`}>
               <div className="relative z-20 w-full px-5 md:w-[330px] h-[250px] md:px-0">
                 <Image
-                  src={urlForImage(post.mainImage).url()}
+                  src={urlForImage(post?.mainImage).url()}
                   className="object-center object-fill rounded-sm w-full px-5 md:px-0"
                   alt={post.title}
                   fill
@@ -46,4 +46,4 @@ const BrainTeaserPost = ({ posts }: any) => {
   );
 };
 
-export default BrainTeaserPost;
+export default SportComponent;
