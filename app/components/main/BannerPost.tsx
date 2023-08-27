@@ -17,7 +17,7 @@ const BannerPost = ({ bannerPost }: Props) => {
       <div className="flex flex-col md:flex-row justify-center w-full pb-5 md:pb-0">
         <div className="px-5 w-full md:w-[70%] md:p-0">
           <ClientRoute route={`blog/banner/${bannerPost.slug.current}`}>
-            <div className="relative h-[200px] md:h-[400px] w-full md:mb-6">
+            <div className="relative h-[250px] md:h-[400px] w-full md:mb-6">
               <Image
                 src={urlForImage(bannerPost?.mainImage).url()}
                 alt={bannerPost?.title}

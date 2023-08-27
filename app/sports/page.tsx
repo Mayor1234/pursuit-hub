@@ -25,9 +25,10 @@ const queryAll = groq`*[_type == 'category' && title == 'sports'][0]{
     } | order(publishedAt desc)
   }
   `;
+export const revalidate = 60;
 
 const page = async () => {
-  const posts = await client.fetch(query);
+  const posts = await client.fetch(query, {});
   const trending = await client.fetch(queryAll);
 
   const sportTrend = trending.posts;

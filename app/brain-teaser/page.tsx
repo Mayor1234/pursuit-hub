@@ -25,6 +25,7 @@ const queryAll = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
     } | order(publishedAt desc)
   }
   `;
+export const revalidate = 60;
 
 const page = async () => {
   const posts = await client.fetch(query);

@@ -28,6 +28,7 @@ const queryAll = groq`*[_type == 'category' && title == 'news'][0]{
     } | order(publishedAt desc)
   }
   `;
+export const revalidate = 60;
 
 const page = async () => {
   const posts = await client.fetch(query);

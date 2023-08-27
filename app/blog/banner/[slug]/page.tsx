@@ -13,6 +13,8 @@ type Props = {
   };
 };
 
+export const revalidate = 60;
+
 const page = async ({ params: { slug } }: Props) => {
   const query = groq`
     *[_type=='post' && slug.current == $slug][0]{
@@ -40,7 +42,7 @@ const page = async ({ params: { slug } }: Props) => {
           </div>
         </div>
         <div>
-          <div className="relative w-full h-[200px] md:h-[507px]">
+          <div className="relative w-full h-[250px] md:h-[507px]">
             <Image
               src={urlForImage(bannerPost?.mainImage).url()}
               alt={bannerPost?.title}
