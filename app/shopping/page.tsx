@@ -6,6 +6,8 @@ import Loading from '../components/loading/Loading';
 import ShopComponent from '../components/shop-component/ShopComponent';
 import ShopTrending from '../components/shop-component/ShopTrending';
 
+export const revalidate = 60;
+
 const query = groq`*[_type == 'category' && title == 'shopping'][0]{
     ...,
     "posts": *[_type == 'post' && references(^._id)]{
@@ -25,11 +27,14 @@ const queryAll = groq`*[_type == 'category' && title == 'shopping'][0]{
     } | order(publishedAt desc)
   }
   `;
-export const revalidate = 60;
 
 const page = async () => {
-  const posts = await client.fetch(query);
-  const trending = await client.fetch(queryAll);
+  const posts = await client.fetch(query, {
+    cache: 'no-store',
+  });
+  const trending = await client.fetch(queryAll, {
+    cache: 'no-store',
+  });
 
   const shopTrend = trending.posts;
 

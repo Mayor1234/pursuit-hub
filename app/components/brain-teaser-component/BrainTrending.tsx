@@ -10,10 +10,10 @@ const BrainTrending = ({ trending }: Props) => {
     <section className="max-w-5xl mx-auto my-10">
       <div className=" py-4 md:py-8">
         <h2 className="text-[32px] md:text-[43px] px-5 font-medium md:leading-[1em] md:px-0 tracking-normal text-pry">
-          Brain Teaser
+          Brain Teasers
         </h2>
       </div>
-      <TrendingCard trending={trending} />
+      <TrendingCard initial_trending={trending} />
     </section>
   );
 };

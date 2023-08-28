@@ -44,7 +44,7 @@ const Footer = () => {
           </ul>
           <div>
             <p className="text-sm">
-              &copy; {year} Pursuit Hub Inc. All Rights Reserved.
+              &copy; {year} Pursuit Hubs Inc. All Rights Reserved.
             </p>
           </div>
         </div>

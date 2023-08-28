@@ -23,7 +23,7 @@ const MenuItems = () => {
         {isOpen && (
           <div className="h-screen w-screen bg-[#d6dbdc] absolute top-16 right-0 left-0 z-40 gap-8 uppercase text-sm text-gray-800 font-medium shadow-md">
             <ul
-              className="flex flex-col h-[80%] gap-10 py-20 px-5 md:hidden"
+              className="flex flex-col h-[80%] gap-4 py-20 px-5 md:hidden"
               onClick={() => setIsOpen(!isOpen)}
             >
               <Menu />

@@ -4,15 +4,15 @@ export const menuItems = [
     title: 'brain teaser',
   },
   {
-    url: 'news',
-    title: 'trending news',
-  },
-  {
-    url: 'sports',
-    title: 'sports',
+    url: 'skincare-tips',
+    title: 'skincare tips & products',
   },
   {
     url: 'shopping',
     title: 'Shopping',
+  },
+  {
+    url: 'jobs-vacancy',
+    title: 'jobs vacancy',
   },
 ];

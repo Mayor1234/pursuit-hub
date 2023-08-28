@@ -13,10 +13,10 @@ const page = () => {
       <div>
         <div className="pb-6">
           <p>
-            Welcome to Pursuit Hub. These Terms of Use govern your access to and
-            use of the Website. Please read these terms carefully before using
-            the Website. By accessing or using the Website, you agree to be
-            bound by these Terms of Use. If you do not agree with any part of
+            Welcome to Pursuit Hubs. These Terms of Use govern your access to
+            and use of the Website. Please read these terms carefully before
+            using the Website. By accessing or using the Website, you agree to
+            be bound by these Terms of Use. If you do not agree with any part of
             these terms, you must not use the Website.
           </p>
         </div>
@@ -193,7 +193,7 @@ const page = () => {
               <span className="text-gray-500"> dyvvne@gmail.com</span>
             </p>
             <br />
-            Thank you for visiting Pursuit Hub! Enjoy your stay and happy
+            Thank you for visiting Pursuit Hubs! Enjoy your stay and happy
             reading!
           </p>
         </div>

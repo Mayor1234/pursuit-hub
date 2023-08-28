@@ -1,15 +1,15 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import { urlForImage } from '@/sanity/lib/image';
 import { Post } from '@/typings';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const NewsPost = ({ posts }: any) => {
-  const newsPosts: Post[] = posts.posts;
+const JobsComponent = ({ posts }: any) => {
+  const jobsPosts: Post[] = posts.posts;
 
   return (
-    <section className="max-w-5xl mx-auto my-20">
+    <section className="max-w-5xl mx-autos my-20">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {newsPosts?.map((post, index) => (
+        {jobsPosts?.map((post, index) => (
           <div key={index}>
             <Link href={`blog/post/${post.slug.current}`}>
               <div className="relative z-20 w-full px-5 md:w-[330px] h-[250px] md:px-0">
@@ -27,6 +27,7 @@ const NewsPost = ({ posts }: any) => {
                   {post?.title}
                 </p>
               </Link>
+
               <div className="flex  text-sm font-light text-gray-600 capitalize">
                 <p className="pr-2">by {post.author.name}</p>
                 <span className='before:content-["\a·\a"]'>
@@ -45,4 +46,4 @@ const NewsPost = ({ posts }: any) => {
   );
 };
 
-export default NewsPost;
+export default JobsComponent;

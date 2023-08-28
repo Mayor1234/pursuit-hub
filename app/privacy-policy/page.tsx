@@ -16,14 +16,14 @@ const page = () => {
             Introduction
           </h2>
           <p className="leading-8">
-            Welcome to Pursuit HUb. We are committed to protecting your privacy
-            and ensuring the security of your personal information. This Privacy
-            Policy outlines the types of information we collect from you when
-            you visit our blog website, how we use and share that information,
-            and the choices you have regarding your data. By accessing or using
-            Pursuit HUb, you agree to the terms of this Privacy Policy. If you
-            do not agree with the terms herein, please do not access or use our
-            website.
+            Welcome to pursuit hubss. We are committed to protecting your
+            privacy and ensuring the security of your personal information. This
+            Privacy Policy outlines the types of information we collect from you
+            when you visit our blog website, how we use and share that
+            information, and the choices you have regarding your data. By
+            accessing or using pursuit hubss, you agree to the terms of this
+            Privacy Policy. If you do not agree with the terms herein, please do
+            not access or use our website.
           </p>
         </div>
         <div className="pb-6">
@@ -133,7 +133,7 @@ const page = () => {
             Children&#39;s Privacy
           </h2>
           <p className="leading-8">
-            Pursuit Hub is not directed at individuals under the age of 13. We
+            pursuit hubss is not directed at individuals under the age of 13. We
             do not knowingly collect personal information from children. If you
             believe we have unintentionally collected information from a child,
             please contact us immediately, and we will take appropriate steps to

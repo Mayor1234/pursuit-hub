@@ -4,12 +4,12 @@ import { client } from '@/sanity/lib/client';
 import { Suspense } from 'react';
 import Loading from '../components/loading/Loading';
 
-import TrendingCard from '../components/main/TrendingCard';
+import SkincarePost from '../components/skincare-tips/SkincarePost';
+import SkincareTrending from '../components/skincare-tips/SkincareTrending';
 
-import NewsPost from '../components/news-component/NewsPost';
-import NewsTrending from '../components/news-component/NewsTrending';
+export const revalidate = 60;
 
-const query = groq`*[_type == 'category' && title == 'news'][0]{
+const query = groq`*[_type == 'category' && title == 'skincare-tips'][0]{
     ...,
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
@@ -18,7 +18,7 @@ const query = groq`*[_type == 'category' && title == 'news'][0]{
   }
   `;
 
-const queryAll = groq`*[_type == 'category' && title == 'news'][0]{
+const queryAll = groq`*[_type == 'category' && title == 'skincare-tips'][0]{
     
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
@@ -28,7 +28,6 @@ const queryAll = groq`*[_type == 'category' && title == 'news'][0]{
     } | order(publishedAt desc)
   }
   `;
-export const revalidate = 60;
 
 const page = async () => {
   const posts = await client.fetch(query);
@@ -39,8 +38,8 @@ const page = async () => {
   return (
     <div>
       <Suspense fallback={<Loading />}>
-        <NewsPost posts={posts} />
-        <NewsTrending trending={news} />
+        <SkincarePost posts={posts} />
+        <SkincareTrending trending={news} />
       </Suspense>
     </div>
   );

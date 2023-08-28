@@ -4,44 +4,40 @@ import { Suspense, useState } from 'react';
 import { Post } from '@/typings';
 import { urlForImage } from '@/sanity/lib/image';
 import Image from 'next/image';
-import Pagination from '../pagination/Pagination';
 import ClientRoute from '../ClientRoute';
 import Link from 'next/link';
 import Loading from '../loading/Loading';
 
 type Props = {
-  trending: Post[];
+  initial_trending: Post[];
 };
 
-const TrendingCard = ({ trending }: Props) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const loadMoreSteps = 5;
 
-  const postsPerPage = 2;
+const TrendingCard = ({ initial_trending }: Props) => {
+  const [currentPosts, setCurrentPosts] = useState(initial_trending);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = trending.slice(indexOfFirstPost, indexOfLastPost);
+  const [loadedAmout, setLoadedAmount] = useState(loadMoreSteps);
 
-  const prevPage = () => {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
+  const getMorePosts = async () => {
+    try {
+      const data = await fetch(
+        `/api/blog?start=${loadedAmout}&end=${loadedAmout + loadMoreSteps}`,
+        {
+          cache: 'no-store',
+        }
+      ).then((response) => response.json());
+      setLoadedAmount(loadedAmout + loadMoreSteps);
+      setCurrentPosts([...currentPosts, ...data.trending]);
+    } catch (error) {
+      console.log(error);
     }
-  };
-
-  const nextPage = () => {
-    if (currentPage !== Math.ceil(trending.length / postsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
   };
 
   return (
-    <div>
+    <div className="flex flex-col w-full">
       <Suspense fallback={<Loading />}>
-        <div className="flex flex-col gap-5 pb-8 px-5 md:px-0">
+        <div className="flex flex-col gap-5 pb-8 px-5 lg:px-0">
           {currentPosts?.map((post, index) => (
             <div key={index} className="flex items-center gap-2">
               <ClientRoute route={`blog/post/${post.slug.current}`}>
@@ -84,14 +80,14 @@ const TrendingCard = ({ trending }: Props) => {
           ))}
         </div>
       </Suspense>
-      <Pagination
-        totalPosts={trending.length}
-        paginate={paginate}
-        postsPerPage={postsPerPage}
-        currentPage={currentPage}
-        prevPage={prevPage}
-        nextPage={nextPage}
-      />
+
+      <button
+        onClick={getMorePosts}
+        disabled={false}
+        className="bg-pry py-3 px-6 mt-10 w-fit border-[1px] border-solid border-transparent text-base rounded-md text-[#f7f8f9] self-center lg:text-lg lg:px-8 hover:bg-[#f7f8f9] transition-all delay-75 duration-300 ease-in-out hover:text-pry hover:border-[1px] hover:border-pry"
+      >
+        SEE MORE
+      </button>
     </div>
   );
 };

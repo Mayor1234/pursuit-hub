@@ -6,7 +6,7 @@ const Menu = () => {
     <>
       {menuItems.map((menu, index) => (
         <ClientRoute route={`/${menu.url}`} key={index}>
-          <li className="h-full items-center uppercase text-base hover:text-pry transition-all delay-150 duration-300 ease-in-out">
+          <li className="h-full py-4 border-b-2 border-gray-200 items-center uppercase text-base hover:text-pry transition-all delay-150 duration-300 ease-in-out md:border-none">
             {menu.title}
           </li>
         </ClientRoute>

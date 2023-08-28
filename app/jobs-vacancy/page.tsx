@@ -3,10 +3,11 @@ import { client } from '@/sanity/lib/client';
 import { Suspense } from 'react';
 import Loading from '../components/loading/Loading';
 
-import SportComponent from '../components/sport-component/SportComponent';
-import SportTrending from '../components/sport-component/SportTrending';
+import JobsComponent from '../components/jobs/JobsComponent';
+import JobsTrending from '../components/jobs/JobsTrending';
 
-const query = groq`*[_type == 'category' && title == 'sports'][0]{
+export const revalidate = 60;
+const query = groq`*[_type == 'category' && title == 'jobs'][0]{
     ...,
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
@@ -15,7 +16,7 @@ const query = groq`*[_type == 'category' && title == 'sports'][0]{
   }
   `;
 
-const queryAll = groq`*[_type == 'category' && title == 'sports'][0]{
+const queryAll = groq`*[_type == 'category' && title == 'jobs'][0]{
 
     "posts": *[_type == 'post' && references(^._id)]{
         ...,
@@ -25,19 +26,18 @@ const queryAll = groq`*[_type == 'category' && title == 'sports'][0]{
     } | order(publishedAt desc)
   }
   `;
-export const revalidate = 60;
 
 const page = async () => {
-  const posts = await client.fetch(query, {});
+  const posts = await client.fetch(query);
   const trending = await client.fetch(queryAll);
 
-  const sportTrend = trending.posts;
+  const jobsTrend = trending.posts;
 
   return (
     <div className="max-w-5xl mx-auto">
       <Suspense fallback={<Loading />}>
-        <SportComponent posts={posts} />
-        <SportTrending trending={sportTrend} />
+        <JobsComponent posts={posts} />
+        <JobsTrending trending={jobsTrend} />
       </Suspense>
     </div>
   );
