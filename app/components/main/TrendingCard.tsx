@@ -10,17 +10,22 @@ import Loading from '../loading/Loading';
 
 type Props = {
   initial_trending: Post[];
+  total: number;
 };
 
 const loadMoreSteps = 5;
 
-const TrendingCard = ({ initial_trending }: Props) => {
+const TrendingCard = ({ initial_trending, total }: Props) => {
   const [currentPosts, setCurrentPosts] = useState(initial_trending);
 
   const [loadedAmout, setLoadedAmount] = useState(loadMoreSteps);
+  const [isLoading, setIsloading] = useState(false);
+
+  const showButton = total >= loadedAmout;
 
   const getMorePosts = async () => {
     try {
+      setIsloading(true);
       const data = await fetch(
         `/api/blog?start=${loadedAmout}&end=${loadedAmout + loadMoreSteps}`,
         {
@@ -29,6 +34,7 @@ const TrendingCard = ({ initial_trending }: Props) => {
       ).then((response) => response.json());
       setLoadedAmount(loadedAmout + loadMoreSteps);
       setCurrentPosts([...currentPosts, ...data.trending]);
+      setIsloading(false);
     } catch (error) {
       console.log(error);
     }
@@ -80,14 +86,15 @@ const TrendingCard = ({ initial_trending }: Props) => {
           ))}
         </div>
       </Suspense>
-
-      <button
-        onClick={getMorePosts}
-        disabled={false}
-        className="bg-pry py-3 px-6 mt-10 w-fit border-[1px] border-solid border-transparent text-base rounded-md text-[#f7f8f9] self-center lg:text-lg lg:px-8 hover:bg-[#f7f8f9] transition-all delay-75 duration-300 ease-in-out hover:text-pry hover:border-[1px] hover:border-pry"
-      >
-        SEE MORE
-      </button>
+      {showButton && (
+        <button
+          onClick={getMorePosts}
+          disabled={false}
+          className="bg-pry py-2 mt-10 w-32 border-[1px] border-solid border-transparent text-base rounded-md text-[#f7f8f9] self-center lg:w-40 lg:text-lg lg:py-3 active:bg-tertiary transition-all delay-75 duration-300 ease-in-out"
+        >
+          {isLoading ? 'LOADING...' : 'SEE MORE'}
+        </button>
+      )}
     </div>
   );
 };

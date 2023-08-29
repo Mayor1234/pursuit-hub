@@ -10,10 +10,10 @@ const MenuItems = () => {
 
   return (
     <div>
-      <ul className="hidden h-16 md:flex justify-center items-center gap-10">
+      <ul className="hidden h-16 lg:flex justify-center items-center gap-10">
         <Menu />
       </ul>
-      <div className="h-full flex items-center justify-center flex-col  md:hidden">
+      <div className="h-full flex items-center justify-center flex-col  lg:hidden">
         <div
           onClick={() => setIsOpen(!isOpen)}
           className="cursor-pointer z-50 text-[#839396]"

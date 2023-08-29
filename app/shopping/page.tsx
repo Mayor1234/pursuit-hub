@@ -29,12 +29,8 @@ const queryAll = groq`*[_type == 'category' && title == 'shopping'][0]{
   `;
 
 const page = async () => {
-  const posts = await client.fetch(query, {
-    cache: 'no-store',
-  });
-  const trending = await client.fetch(queryAll, {
-    cache: 'no-store',
-  });
+  const posts = await client.fetch(query);
+  const trending = await client.fetch(queryAll);
 
   const shopTrend = trending.posts;
 

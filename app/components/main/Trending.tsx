@@ -4,9 +4,10 @@ import { Post } from '@/typings';
 
 type Props = {
   trending: Post[];
+  total: number;
 };
 
-const Trending = ({ trending }: Props) => {
+const Trending = ({ trending, total }: Props) => {
   return (
     <section className="max-w-5xl mx-auto lg:py-10">
       <div className="py-4 md:py-8 ">
@@ -14,7 +15,7 @@ const Trending = ({ trending }: Props) => {
           Trending Stories
         </h2>
       </div>
-      <TrendingCard initial_trending={trending} />
+      <TrendingCard initial_trending={trending} total={total} />
     </section>
   );
 };
