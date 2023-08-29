@@ -10,7 +10,7 @@ import Loading from '../loading/Loading';
 
 type Props = {
   initial_trending: Post[];
-  total: number;
+  total?: number;
 };
 
 const loadMoreSteps = 5;
@@ -21,7 +21,10 @@ const TrendingCard = ({ initial_trending, total }: Props) => {
   const [loadedAmout, setLoadedAmount] = useState(loadMoreSteps);
   const [isLoading, setIsloading] = useState(false);
 
-  const showButton = total >= loadedAmout;
+  let showButton;
+  if (total !== undefined) {
+    showButton = total >= loadedAmout;
+  }
 
   const getMorePosts = async () => {
     try {

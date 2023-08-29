@@ -4,7 +4,7 @@ import { Post } from '@/typings';
 
 type Props = {
   trending: Post[];
-  total: number;
+  total?: number;
 };
 
 const Trending = ({ trending, total }: Props) => {
