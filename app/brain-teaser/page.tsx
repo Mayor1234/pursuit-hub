@@ -5,7 +5,10 @@ import { Suspense } from 'react';
 import Loading from '../components/loading/Loading';
 
 import BrainTrending from '../components/brain-teaser-component/BrainTrending';
-
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Brain Teasers',
+};
 const query = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
     ...,
     "posts": *[_type == 'post' && references(^._id)]{

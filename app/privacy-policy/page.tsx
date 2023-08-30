@@ -1,3 +1,8 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Shopping',
+};
 const page = () => {
   return (
     <div className="max-w-5xl mx-auto px-5 my-10 md:my-20 md:px-0">

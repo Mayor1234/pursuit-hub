@@ -70,12 +70,12 @@ const TrendingCard = ({ initial_trending, total }: Props) => {
                   ))}
                 </div>
                 <Link href={`blog/post/${post.slug.current}`}>
-                  <p className="text-lg font-medium md:tracking-wide text-gray-700 line-clamp-1 md:line-clamp-2 md:leading-tight transition-all delay-150 duration-300 ease-in-out hover:text-pry">
+                  <p className="text-lg font-medium md:tracking-wide line-clamp-1 md:line-clamp-2 md:leading-tight transition-all delay-150 duration-300 ease-in-out hover:text-pry">
                     {post?.title}
                   </p>
                 </Link>
                 <div className="flex text-sm font-light text-gray-600 capitalize pt-2">
-                  <p className="pr-2">by {post.author.name}</p>
+                  <p className="pr-1">{post.author.name}</p>
                   <span className='before:content-["\a·\a"]'>
                     {new Date(post?.publishedAt).toLocaleDateString('en-US', {
                       day: 'numeric',

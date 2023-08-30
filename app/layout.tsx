@@ -7,7 +7,7 @@ import Footer from './components/footer/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Blog Website',
+  title: 'Pursuit Hubs',
   description: 'pursuit hubs Blog',
 };
 

@@ -1,12 +1,17 @@
 import { groq } from 'next-sanity';
 import { client } from '@/sanity/lib/client';
 import { Suspense } from 'react';
-import Loading from '../components/loading/Loading';
+import type { Metadata } from 'next';
 
+import Loading from '../components/loading/Loading';
 import ShopComponent from '../components/shop-component/ShopComponent';
 import ShopTrending from '../components/shop-component/ShopTrending';
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: 'Shopping',
+};
 
 const query = groq`*[_type == 'category' && title == 'shopping'][0]{
     ...,

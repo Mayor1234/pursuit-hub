@@ -5,8 +5,13 @@ import Loading from '../components/loading/Loading';
 
 import JobsComponent from '../components/jobs/JobsComponent';
 import JobsTrending from '../components/jobs/JobsTrending';
+import { Metadata } from 'next';
 
 export const revalidate = 60;
+export const metadata: Metadata = {
+  title: 'Jobs Vacancy',
+};
+
 const query = groq`*[_type == 'category' && title == 'jobs'][0]{
     ...,
     "posts": *[_type == 'post' && references(^._id)]{

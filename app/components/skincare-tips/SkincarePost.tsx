@@ -21,7 +21,7 @@ const SkincarePost = ({ posts }: any) => {
                 />
               </div>
             </Link>
-            <div className="px-5 pt-4 w-[330px] md:px-0">
+            <div className="px-5 pt-4 w-full md:px-0">
               <Link href={`blog/post/${post.slug.current}`}>
                 <p className="pb-3 text-lg font-medium tracking-wide leading-snug transition-all delay-150 duration-300 ease-in-out hover:text-pry">
                   {post?.title}

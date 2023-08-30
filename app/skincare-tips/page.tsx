@@ -6,8 +6,13 @@ import Loading from '../components/loading/Loading';
 
 import SkincarePost from '../components/skincare-tips/SkincarePost';
 import SkincareTrending from '../components/skincare-tips/SkincareTrending';
+import { Metadata } from 'next';
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: 'Skincare Tips and Products',
+};
 
 const query = groq`*[_type == 'category' && title == 'skincare-tips'][0]{
     ...,
