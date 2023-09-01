@@ -28,3 +28,21 @@ export async function fetchData(start: number, end: number) {
     total,
   };
 }
+
+export async function getAllPosts() {
+  const query2 = groq`
+    posts: *[_type=='post'] | order(publishedAt desc){
+  ...,
+  author->{name},
+  categories[]->,
+},
+`;
+
+  const posts = await client.fetch(query2, {
+    cache: 'no-store',
+  });
+
+  console.log(posts);
+
+  return posts;
+}

@@ -3,9 +3,10 @@ import TrendingCard from '../main/TrendingCard';
 
 type Props = {
   trending: Post[];
+  total: number;
 };
 
-const ShopTrending = ({ trending }: Props) => {
+const ShopTrending = ({ trending, total }: Props) => {
   return (
     <section className="max-w-5xl mx-auto my-10">
       <div className=" py-4 md:py-8">
@@ -13,7 +14,7 @@ const ShopTrending = ({ trending }: Props) => {
           SHOPPING
         </h2>
       </div>
-      <TrendingCard initial_trending={trending} />
+      <TrendingCard initial_trending={trending} total={total} />
     </section>
   );
 };

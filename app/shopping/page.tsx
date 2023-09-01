@@ -29,13 +29,16 @@ const queryAll = groq`*[_type == 'category' && title == 'shopping'][0]{
     author->{name},
     categories[]->,
 
-    } | order(publishedAt desc)
+    } | order(publishedAt desc),
+    "total": count(*[_type=='post'])
+
   }
   `;
 
 const page = async () => {
   const posts = await client.fetch(query);
   const trending = await client.fetch(queryAll);
+  const total = trending.total;
 
   const shopTrend = trending.posts;
 
@@ -43,7 +46,7 @@ const page = async () => {
     <div className="max-w-5xl mx-auto">
       <Suspense fallback={<Loading />}>
         <ShopComponent posts={posts} />
-        <ShopTrending trending={shopTrend} />
+        <ShopTrending trending={shopTrend} total={total} />
       </Suspense>
     </div>
   );

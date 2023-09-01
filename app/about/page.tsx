@@ -13,10 +13,10 @@ const page = () => {
       <div>
         <div className="pb-6">
           <p className="leading-8">
-            Welcome to pursuit hubss, your one-stop destination for a unique
+            Welcome to Pursuit Hubs, your one-stop destination for a unique
             blend of mind-bending challenges and savvy shopping advice. We are
             passionate about three things: exercising your brain, matching job
-            recruiters and seekers, and helping you find the best deals online.
+            recruiters with seekers, and helping you find the best deals online.
             Here is a glimpse into who we are and what we do:
           </p>
         </div>
@@ -26,10 +26,10 @@ const page = () => {
           </h2>
           <p className="leading-8">
             We aspire to entertain, educate, and empower. We believe that
-            keeping your mind sharp and making informed shopping choices are
-            essential for leading a fulfilling life. With that in mind, we have
-            created a platform that caters to both your intellectual curiosity
-            and your practical needs.
+            keeping your mind sharp and making informed jobs and shopping
+            choices are essential for living a fulfilling life. With that in
+            mind, we have created a platform that caters to both your
+            intellectual curiosity and your practical needs.
           </p>
         </div>
         <div className="pb-6">

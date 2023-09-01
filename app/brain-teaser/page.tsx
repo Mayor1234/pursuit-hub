@@ -25,7 +25,8 @@ const queryAll = groq`*[_type == 'category' && title == 'brain-teaser'][0]{
     author->{name},
     categories[]->,
 
-    } | order(publishedAt desc)
+    } | order(publishedAt desc),
+    "total": count(*[_type=='post'])
   }
   `;
 export const revalidate = 60;
@@ -33,6 +34,7 @@ export const revalidate = 60;
 const page = async () => {
   const posts = await client.fetch(query);
   const trending = await client.fetch(queryAll);
+  const total = trending.total;
 
   const brainTrend = trending.posts;
 
@@ -40,7 +42,7 @@ const page = async () => {
     <div className="max-w-5xl mx-auto">
       <Suspense fallback={<Loading />}>
         <BrainTeaserPost posts={posts} />
-        <BrainTrending trending={brainTrend} />
+        <BrainTrending trending={brainTrend} total={total} />
       </Suspense>
     </div>
   );

@@ -34,7 +34,7 @@ const PostCard = ({ posts }: Props) => {
                   </p>
                 </Link>
                 <div className="flex text-sm font-light text-gray-600 capitalize">
-                  <p className="pr-2">by {post.author.name}</p>
+                  <p className="pr-1">by {post.author.name}</p>
                   <span className='before:content-["\a·\a"]'>
                     {new Date(post?.publishedAt).toLocaleDateString('en-US', {
                       day: 'numeric',

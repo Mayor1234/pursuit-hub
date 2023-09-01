@@ -36,7 +36,7 @@ const Footer = () => {
           <ul className="flex flex-wrap justify-center items-center  gap-4 pb-4 pt-4 lg:pt-0">
             {data.map((item, index) => (
               <Link key={index} href={`${item.url}`}>
-                <li className="cursor-pointer text-sm transition-all delay-150 duration-300 ease-in-out hover:text-pry">
+                <li className="cursor-pointer text-sm transition-all delay-150 duration-300 ease-in-out py-1 hover:text-pry lg:px-2 lg:py-2">
                   {item.title}
                 </li>
               </Link>

@@ -4,7 +4,7 @@ export const menuItems = [
     title: 'brain teaser',
   },
   {
-    url: 'skincare-tips',
+    url: 'skincare',
     title: 'skincare tips & products',
   },
   {

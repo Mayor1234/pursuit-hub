@@ -28,7 +28,10 @@ const queryAll = groq`*[_type == 'category' && title == 'jobs'][0]{
     author->{name},
     categories[]->,
 
-    } | order(publishedAt desc)
+    } | order(publishedAt desc),
+
+    "total": count(*[_type=='post'])
+
   }
   `;
 
@@ -37,12 +40,15 @@ const page = async () => {
   const trending = await client.fetch(queryAll);
 
   const jobsTrend = trending.posts;
+  const total = trending.total;
+
+  console.log(jobsTrend);
 
   return (
     <div className="max-w-5xl mx-auto">
       <Suspense fallback={<Loading />}>
         <JobsComponent posts={posts} />
-        <JobsTrending trending={jobsTrend} />
+        <JobsTrending trending={jobsTrend} total={total} />
       </Suspense>
     </div>
   );

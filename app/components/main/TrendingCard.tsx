@@ -93,7 +93,7 @@ const TrendingCard = ({ initial_trending, total }: Props) => {
         <button
           onClick={getMorePosts}
           disabled={false}
-          className="bg-pry py-2 mt-10 w-32 border-[1px] border-solid border-transparent text-base rounded-md text-[#f7f8f9] self-center lg:w-40 lg:text-lg lg:py-3 active:bg-tertiary transition-all delay-75 duration-300 ease-in-out"
+          className="bg-pry py-2 mt-10 w-32 border-[1px] border-solid border-transparent text-sm rounded-md text-[#f7f8f9] self-center lg:w-40 lg:text-base lg:py-3 active:bg-tertiary transition-all delay-75 duration-300 ease-in-out"
         >
           {isLoading ? 'LOADING...' : 'SEE MORE'}
         </button>
