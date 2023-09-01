@@ -6,6 +6,8 @@ import Footer from './components/footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
+import GoogleAnalytics from '@/GoogleAnalytics';
+
 export const metadata: Metadata = {
   title: 'Pursuit Hubs',
   description: 'pursuit hubs Blog',
@@ -19,6 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        ) : null}
         <Header />
         {children}
         <Footer />
