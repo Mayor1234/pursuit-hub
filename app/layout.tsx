@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   title: 'Pursuit Hubs',
   description: 'pursuit hubs Blog',
 };
-<meta name="google-adsense-account" content="ca-pub-7340391734743825"></meta>;
 
 export default function RootLayout({
   children,
