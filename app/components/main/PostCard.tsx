@@ -13,7 +13,7 @@ const PostCard = ({ posts }: Props) => {
   return (
     <section className="max-w-5xl mx-auto">
       <Suspense fallback={<Loading />}>
-        <div className="grid grid-cols-1 gap-8  md:grid-cols-2 px-5 lg:grid-cols-3 lg:px-0 lg:gap-5 w-full">
+        <div className=" grid-cols-1 gap-8  md:grid-cols-2 px-5 lg:grid-cols-3 lg:px-0 lg:gap-5 w-full">
           {posts?.map((post, index) => (
             <div key={index} className="pb-5 w-full">
               <Link href={`blog/post/${post?.slug.current}`}>

@@ -26,6 +26,8 @@
     "heroicons": "^2.0.18",
     "next": "13.4.9",
     "next-sanity": "^5.1.2",
+    "nextjs-google-adsense": "^1.0.0",
+    "nextjs13_google_adsense": "^1.0.2",
     "postcss": "8.4.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",

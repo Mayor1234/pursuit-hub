@@ -8,6 +8,13 @@ type Props = {
 };
 
 const Trending = ({ trending, total }: Props) => {
+  if (total === 0) {
+    return (
+      <div className="flex justify-center items-center min-h-screen w-screen text-2xl text-gray-800">
+        There is no post
+      </div>
+    );
+  }
   return (
     <section className="max-w-5xl mx-auto lg:py-10">
       <div className="py-4 md:py-8 ">

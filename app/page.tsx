@@ -5,7 +5,7 @@ import { fetchData } from './components/FetchData';
 export const revalidate = 60;
 
 export default async function Home() {
-  const { posts, trending, total } = await fetchData(0, 5);
+  const { posts, trending, total } = await fetchData(0, 4);
 
   return (
     <main className="flex flex-col">

@@ -40,7 +40,6 @@ export async function generateMetadata({ params: { slug } }: MetaProps) {
       descriotion: post.description,
     };
   } catch (error) {
-    console.log(error);
     return {
       title: 'Not Found',
       description: "The page you're looking for does not exist",
