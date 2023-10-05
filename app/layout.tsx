@@ -7,6 +7,7 @@ import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 import GoogleAnalytics from '@/GoogleAnalytics';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
   title: 'Pursuit Hubs',
@@ -37,6 +38,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Toaster position="top-right" />
       </body>
     </html>
   );
